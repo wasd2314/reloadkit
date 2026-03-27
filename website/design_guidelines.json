@@ -1,0 +1,76 @@
+{
+  "theme": "DARK",
+  "archetype": "4",
+  "archetype_name": "Swiss & High-Contrast",
+  "design_concept": "Ultra-minimalist, high-performance, stealth/utility directory inspired by club44.cc. Zero bloat, no logo, pure functional typography and stark contrast. It acts as a fast-access software bypass/download hub.",
+  "colors": {
+    "background": "#050505",
+    "surface": "#0F0F0F",
+    "surface_hover": "#171717",
+    "primary": "#FFFFFF",
+    "primary_foreground": "#000000",
+    "secondary": "#A1A1AA",
+    "border": "rgba(255, 255, 255, 0.12)",
+    "ring": "rgba(255, 255, 255, 0.2)"
+  },
+  "typography": {
+    "heading_font": "Cabinet Grotesk, sans-serif",
+    "body_font": "JetBrains Mono, monospace",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl tracking-tighter font-bold",
+      "h2": "text-2xl sm:text-3xl tracking-tight font-semibold",
+      "body": "text-sm sm:text-base leading-relaxed",
+      "mono_labels": "text-xs tracking-[0.2em] uppercase"
+    }
+  },
+  "layout_strategy": {
+    "spacing": "Dense but clear. p-6 inside cards. gap-4 or gap-6 for grids.",
+    "grid": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
+    "corners": "rounded-none or max rounded-sm (2px) to maintain a brutalist/technical edge.",
+    "borders": "1px solid border-white/10 everywhere instead of shadows."
+  },
+  "animations": {
+    "hover": "Instant or very fast (duration-150). No bouncy scales. Borders light up to border-white/40.",
+    "buttons": "Invert colors on hover (bg-white text-black -> bg-black text-white border border-white)."
+  },
+  "components": {
+    "header": "No logo. Just a clean structural top bar. Perhaps a text 'INDEX' or nothing at all, just search and categories.",
+    "search_bar": "Massive, screen-wide or container-wide input. border-b border-white/20, bg-transparent, text-2xl focus:outline-none focus:border-white text-white p-4. Placeholder text muted.",
+    "category_tabs": "Clean text links with brackets [ All ] [ Social Media ] [ Gaming ] [ Other ] for an edgy tech vibe.",
+    "app_card": "Minimalist rectangular block. Contains App Icon (top left), Title (mono or sans), Category label, short description, and a high-contrast 'Download' button at the bottom.",
+    "floating_info_btn": "Fixed bottom-right position. Small circular or square button (e.g., 'i' or '?' icon), pure white bg, black text. Opens a Shadcn Sheet or Dialog.",
+    "info_sheet": "A neat, organized list of all apps, their full descriptions, and secondary download links.",
+    "admin_panel": "Dense data table layout. High contrast rows. Columns: App Name, Category, URL, and Download Count. Includes 'Add App' modal."
+  },
+  "pages": {
+    "home": "Hero contains the massive search bar and category filters. Below is the grid of apps. Floating info button bottom right.",
+    "admin": "Accessible via a hidden route (e.g., /admin). Clean dashboard layout with a table."
+  },
+  "data_seed": [
+    { "name": "Discord", "category": "Social Media", "icon_name": "SiDiscord", "description": "Voice, video and text chat app.", "url": "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86" },
+    { "name": "Element X", "category": "Social Media", "icon_name": "SiElement", "description": "Secure, open-source Matrix messenger.", "url": "https://element.io/download" },
+    { "name": "Firefox", "category": "Other", "icon_name": "SiFirefox", "description": "Fast, private, and free web browser.", "url": "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US" },
+    { "name": "Steam", "category": "Gaming", "icon_name": "SiSteam", "description": "Ultimate destination for playing games.", "url": "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe" },
+    { "name": "Epic Games", "category": "Gaming", "icon_name": "SiEpicgames", "description": "Download and play PC games.", "url": "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi" },
+    { "name": "BakkesMod", "category": "Gaming", "icon_name": "FaGamepad", "description": "Rocket League modding and training tool.", "url": "https://github.com/bakkesmodorg/BakkesModInjectorC/releases/latest/download/BakkesModSetup.zip" },
+    { "name": "FXSound", "category": "Other", "icon_name": "FaVolumeUp", "description": "Boost volume and sound quality.", "url": "https://www.fxsound.com/download" },
+    { "name": "Voicemod", "category": "Other", "icon_name": "FaMicrophone", "description": "Free real-time voice changer.", "url": "https://www.voicemod.net/download/" },
+    { "name": "FiveM", "category": "Gaming", "icon_name": "FaCarCrash", "description": "Play GTA V on customized multiplayer servers.", "url": "https://runtime.fivem.net/client/FiveM.exe" },
+    { "name": "µTorrent", "category": "Other", "icon_name": "SiUtorrent", "description": "A very tiny BitTorrent client.", "url": "https://www.utorrent.com/downloads/complete/track/stable/os/win/" }
+  ],
+  "media": {
+    "image_urls": []
+  },
+  "instructions_to_main_agent": [
+    "Build a React application with Tailwind CSS and Shadcn UI. Ensure the aesthetic is ultra-dark, minimalist, and brutalist. Avoid unnecessary shadows; use 1px borders for structure.",
+    "Do NOT add a brand logo to the site header as requested by the user.",
+    "Run `yarn add react-icons` to get the brand icons (SiDiscord, SiSteam, etc.) needed for the apps.",
+    "Store the `data_seed` array in a global state or a local context so that the Admin Panel can modify it and track 'download_count' for each app.",
+    "On the Home Page, include a search input and category filters (Social Media, Gaming, Other).",
+    "Create a Floating Action Button (FAB) at the bottom right. Clicking it should open a Modal or Sheet showing all apps with descriptions.",
+    "When a user clicks 'Download' on an app card, open the URL in a new tab AND increment that app's download counter in the state.",
+    "Create an Admin Panel route (e.g., `/admin`) with a Table to view apps, their download counters, and a form to add new apps.",
+    "Ensure all interactive elements have `data-testid` attributes (e.g., `data-testid=\"download-button-discord\"`, `data-testid=\"search-input\"`).",
+    "Focus on high performance: avoid heavy libraries, use basic CSS transitions, and keep the DOM clean."
+  ]
+}
